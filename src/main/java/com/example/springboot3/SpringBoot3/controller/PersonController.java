@@ -25,13 +25,13 @@ public class PersonController {
     private IPersonService pServ;
 
     /*Create Method (C)*/
-    //@PostMapping("/new/p")
-    //public String createPerson(@RequestBody Person p){
+    @PostMapping("/new/p")
+    public String createPerson(@RequestBody Person p){
      //   p.password = HASH(p.password)
      //   pServ
-    //    pServ.createPerson(p);
-    //    return "New Person created successfully";
-    //}
+        pServ.createPerson(p);
+        return "New Person created successfully";
+    }
     
     /*Read Method (R)*/
     @GetMapping("/findall/p")
