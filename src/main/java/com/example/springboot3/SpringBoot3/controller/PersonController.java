@@ -19,55 +19,46 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
 public class PersonController {
-    
+
     @Autowired
     private IPersonService pServ;
 
     /*Create Method (C)*/
     @PostMapping("/new/p")
-    public String createPerson(@RequestBody Person p){
-     //   p.password = HASH(p.password)
-     //   pServ
+    public String createPerson(@RequestBody Person p) {
         pServ.createPerson(p);
         return "New Person created successfully";
     }
-    
+
     /*Read Method (R)*/
     @GetMapping("/findall/p")
     @ResponseBody
-    public List<Person> findAllPeople(){
+    public List<Person> findAllPeople() {
         return pServ.findAllPeople();
     }
-    
+
     @GetMapping("/find/p/{id}")
-    public Person findPerson(@PathVariable Long id){
+    public Person findPerson(@PathVariable Long id) {
         return pServ.findPerson(id);
     }
-    
+
     /*Update Method (U)*/
     @PutMapping("/update/p/{id}")
-    public void updatePerson(@PathVariable Long id, @RequestBody Person newPerson){
-                            //@RequestParam String name,
-                            //@RequestParam String position,
-                            //@RequestParam String description,
-                            //@RequestParam String avatarURL,
-                            //@RequestParam String coverURL
-                            //){
-        
+    public void updatePerson(@PathVariable Long id, @RequestBody Person newPerson) {
         Person p = pServ.findPerson(id);
         p.setName(newPerson.getName());
         p.setPosition(newPerson.getPosition());
         p.setDescription(newPerson.getDescription());
         p.setAvatarURL(newPerson.getAvatarURL());
         p.setCoverURL(newPerson.getCoverURL());
-        
+
         pServ.createPerson(p);
     }
-    
+
     /*Delete Method (D)*/
     @DeleteMapping("/delete/p/{id}")
-    public String deletePerson(@PathVariable Long id){
+    public String deletePerson(@PathVariable Long id) {
         pServ.deletePerson(id);
         return "Person deleted successfully";
-    }  
+    }
 }

@@ -14,33 +14,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
-public class JWTUserDetailsService implements UserDetailsService{
-    
+public class JWTUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepo;
-    
+
     @Autowired
     private PasswordEncoder bcryptEncoder;
-    
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User u = (User) userRepo.findByUsername(username);
         if (u == null) {
-            throw new UsernameNotFoundException("Username not found: "+username);
+            throw new UsernameNotFoundException("Username not found: " + username);
         }
         return new org.springframework.security.core.userdetails.User(u.getUsername(), u.getPassword(), new ArrayList<>());
     }
-    
-    // Deberia ser public User... de la otra manera
+
     public User save(UserDTO user) {
-        
-        //User userDB = (User) userRepo.findByUsername(user.getUsername());
-        
-        //if (userDB != null) {
-        //    return HttpStatus.BAD_REQUEST;
-        //}
-        
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

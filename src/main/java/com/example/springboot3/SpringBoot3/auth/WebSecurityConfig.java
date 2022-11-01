@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService uDetailsServ;
 
-
     @Autowired
     private JWTMiddleware middleware;
 
@@ -47,15 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable()
-                // Los endpoints /login y /register no necesitan ser autenticados.			
                 .authorizeRequests().
                 antMatchers("/login", "/register", "/find/p/1", "/findall/xp", "/findall/ed", "/findall/sk", "/findall/pj").permitAll().
-                // El resto de los endpoints necesita el token JWT para validar el request.
                 anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(authEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        // Agregamos el filtro para validar el token JWT en cada request.
         httpSecurity.addFilterBefore(middleware, UsernamePasswordAuthenticationFilter.class);
     }
 

@@ -57,37 +57,6 @@ public class ExperienceController {
         xpServ.createExperience(xp);
     }
     
-    /*@PutMapping("/update/xp/{id}")
-    public void updateExperience(@PathVariable Long id,
-            @RequestParam String title,
-            @RequestParam String company,
-            @RequestParam String fromdate,
-            @RequestParam String todate,
-            @RequestParam String description,
-            @RequestParam String avatarURL){
-        
-        Experience xp = xpServ.findExperience(id);
-        xp.setTitle(title);
-        xp.setCompany(company);
-        xp.setFromdate(fromdate);
-        xp.setTodate(todate);
-        xp.setDescription(description);
-        xp.setAvatarURL(avatarURL);
-        xpServ.createExperience(xp);
-    }*/
-    
-    /*
-    @PutMapping("/raiseID/xp/{id}")
-    public void raiseExperienceID(@PathVariable Long id){
-        Experience xp = xpServ.findExperience(id);
-        System.out.println("id: " + id);
-        id=id+10;
-        System.out.println("id: " + id);
-        xp.setId(id);
-                
-        xpServ.createExperience(xp);
-    }*/
-    
     /*Delete Method (D)*/
     @DeleteMapping("/delete/xp/{id}")
     public void deleteExpereince(@PathVariable Long id){

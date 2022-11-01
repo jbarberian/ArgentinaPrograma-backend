@@ -45,11 +45,6 @@ public class ProjectController {
     /*Update Method (U)*/
     @PutMapping("/update/pj/{id}")
     public void updateProject(@PathVariable Long id, @RequestBody Project newProject
-            //@RequestParam String title,
-            //@RequestParam String company,
-            //@RequestParam String datespan,
-            //@RequestParam String description,
-            //@RequestParam String avatarURL
     ){
         
         Project pj = pjServ.findProject(id);

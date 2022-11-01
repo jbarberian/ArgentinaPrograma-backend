@@ -54,26 +54,7 @@ public class EducationController {
         
         edServ.createEducation(ed);
     }
-    
-    
-    /*@PutMapping("/update/ed/{id}")
-    public void updateEducation(@PathVariable Long id,
-            @RequestParam String title,
-            @RequestParam String company,
-            @RequestParam String datespan,
-            @RequestParam String description,
-            @RequestParam String avatarURL){
-        
-        Education ed = edServ.findEducation(id);
-        ed.setTitle(title);
-        ed.setCompany(company);
-        ed.setDatespan(datespan);
-        ed.setDescription(description);
-        ed.setAvatarURL(avatarURL);
-        edServ.createEducation(ed);
-    }
-    */
-    
+       
     /*Delete Method (D)*/
     @DeleteMapping("/delete/ed/{id}")
     public void deleteEducation(@PathVariable Long id){
